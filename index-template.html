@@ -18,7 +18,43 @@
     <script type="text/javascript" async
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
         </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
 
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable({ PIE_CHART_ARRAY });
+
+            var options = {
+                // colors: [
+                //     "#10D679",
+                //     "#12D078",
+                //     "#13C977",
+                //     "#15BB75",
+                //     "#17AD73",
+                //     "#199F71",
+                //     "#1D846D",
+                //     "#1F766B",
+                //     "#206F6A",
+                //     "#216869",
+                // ],
+                backgroundColor: "#161616",
+                pieSliceBorderColor: "#ececec",
+                chartArea: { width: "110%", height: "110%" },
+                legend: {
+                    position: 'labeled',
+                    textStyle: { color: "#ececec", fontSize: 5 }
+                }
+
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+    </script>
 </head>
 
 <body>
@@ -37,8 +73,15 @@
         <div class="stat-overview">
             <h1 class="section-heading">Overview</h1>
 
-            <h2>Total logs:</h2>
+            <div id="piechart"></div>
+
+
+            <h2>Total logs (year):</h2>
             <h3><strong>{total_logs}</strong> logs</h3>
+            <hr class="sep">
+
+            <h2>Total logs (month):</h2>
+            <h3><strong>{total_logs_month}</strong> logs</h3>
             <hr class="sep">
 
             <h2>Total weight of 💩:</h2>
